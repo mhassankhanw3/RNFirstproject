@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -19,10 +20,14 @@ export default function AddItem({addItem}) {
         placeholder="Add Item..."
         style={styles.input}
       />
-      <TouchableOpacity style={styles.btn} onPress={() => addItem(text)}>
-        <Text style={styles.btnText}>
-          <Icon name="add" size={20} /> Add Item
-        </Text>
+      <TouchableOpacity>
+        <Button
+          onPress={() => addItem(text)}
+          title="Add Item"
+          style={styles.btnText}>
+          {' '}
+          <Icon name="add" size={20} />
+        </Button>
       </TouchableOpacity>
     </View>
   );

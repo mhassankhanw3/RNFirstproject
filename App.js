@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 // import {uuid} from 'uuid';
 import uuid from 'react-native-uuid';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Alert} from 'react-native';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
 
@@ -20,9 +20,18 @@ const App = () => {
     });
   };
   const addItem = text => {
-    setItems(prevItems => {
-      return [{id: uuid.v4(), text: text}, ...prevItems];
-    });
+    if (!text) {
+      Alert.alert('Error', 'Please Enter an Item', [
+        {
+          text: 'OK',
+          onPress: () => console.log('Ok pressed'),
+        },
+      ]);
+    } else {
+      setItems(prevItems => {
+        return [{id: uuid.v4(), text: text}, ...prevItems];
+      });
+    }
   };
   return (
     <View style={styles.container}>
